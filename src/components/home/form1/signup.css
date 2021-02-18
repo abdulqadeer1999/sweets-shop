@@ -1,0 +1,21 @@
+.form-row {
+    width:500px;
+    margin-left: 200px;
+}
+
+.form-group {
+    width: 500px;
+    margin-left: 200px;
+}
+
+.form-check-input ,.form-check-label {
+    margin-left: 180px;
+}
+
+.form-check-label {
+    margin-left: 200px;
+}
+
+.btn-primary {
+    margin-left: 400px;
+}

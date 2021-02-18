@@ -1,61 +1,87 @@
 
- import {Col,Button  } from 'react-bootstrap';
-function Form() {
-     return (
-         <div>
-             <Form>
-  <Form.Row>
-    <Form.Group as={Col} controlId="formGridEmail">
-      <Form.Label>Email</Form.Label>
-      <Form.Control type="email" placeholder="Enter email" />
-    </Form.Group>
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// //  import {Col,Button,Form  } from 'react-bootstrap';
+//  import {Form,Button } from 'react-bootstrap';
+//  import './signup.css'
 
-    <Form.Group as={Col} controlId="formGridPassword">
-      <Form.Label>Password</Form.Label>
-      <Form.Control type="password" placeholder="Password" />
-    </Form.Group>
-  </Form.Row>
 
-  <Form.Group controlId="formGridAddress1">
-    <Form.Label>Address</Form.Label>
-    <Form.Control placeholder="1234 Main St" />
-  </Form.Group>
+// function SignUp () {
+//      return (
+//       <div>
+       
+//         <div className="form-row">
+//         <div className="form-group col-md-6">
+//             <label htmlFor="inputName">Name</label>
+//             <input type="name" className="form-control" id="inputName" placeholder="Name" />
+//           </div>
+//           <div className="form-group col-md-6">
+//             <label htmlFor="inputEmail4">Email</label>
+//             <input type="email" className="form-control" id="inputEmail4" placeholder="Email" />
+//           </div>
+//           <br /> <br />
+//           <div className="form-group col-md-6">
+//             <label htmlFor="inputPassword4">Password</label>
+//             <input type="password" className="form-control" id="inputPassword4" placeholder="Password" />
+//           </div>
+//           <div className="form-group col-md-6">
+//             <label htmlFor="inputNumber4">Number</label>
+//             <input type="number" className="form-control" id="inputNumber4" placeholder="Number" />
+//           </div>
+//         </div>
+//         <div className="form-row">
+//           <div className="form-group col-md-6">
+//             <label htmlFor="inputCity">City</label>
+//             <input type="text" className="form-control" id="inputCity" placeholder = "City" />
+            
+//           </div>
+//         </div>
+//         <div className="form-group">
+//           <div className="form-check">
+//             <input className="form-check-input" type="checkbox" id="gridCheck" />
+//             <label className="form-check-label" htmlFor="gridCheck">
+//               Check me out
+//             </label>
+//           </div>
+//         </div>
+//         <button type="submit" className="btn btn-primary">Sign Up</button>
+//       </div>
+//     );
+//   }
 
-  <Form.Group controlId="formGridAddress2">
-    <Form.Label>Address 2</Form.Label>
-    <Form.Control placeholder="Apartment, studio, or floor" />
-  </Form.Group>
 
-  <Form.Row>
-    <Form.Group as={Col} controlId="formGridCity">
-      <Form.Label>City</Form.Label>
-      <Form.Control />
-    </Form.Group>
+// export default SignUp ;
 
-    <Form.Group as={Col} controlId="formGridState">
-      <Form.Label>State</Form.Label>
-      <Form.Control as="select" defaultValue="Choose...">
-        <option>Choose...</option>
-        <option>...</option>
-      </Form.Control>
-    </Form.Group>
 
-    <Form.Group as={Col} controlId="formGridZip">
-      <Form.Label>Zip</Form.Label>
-      <Form.Control />
-    </Form.Group>
-  </Form.Row>
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
+import React from "react";
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
 
-  <Form.Group id="formGridCheckbox">
-    <Form.Check type="checkbox" label="Check me out" />
-  </Form.Group>
+const FormPage = () => {
+return (
+<MDBContainer>
+  <MDBRow>
+    <MDBCol md="6">
+      <form>
+        <p className="h5 text-center mb-4">Sign up</p>
+        <div className="grey-text">
+          <MDBInput label="Your name" icon="user" group type="text" validate error="wrong"
+            success="right" />
+          <MDBInput label="Your email" icon="envelope" group type="email" validate error="wrong"
+            success="right" />
+          {/* <MDBInput label="Confirm your email" icon="exclamation-triangle" group type="text" validate
+            error="wrong" success="right" /> */}
+          <MDBInput label="Your password" icon="lock" group type="password" validate />
+        </div>
+        <div className="text-center">
+          <MDBBtn color="primary">Register</MDBBtn>
+        </div>
+      </form>
+    </MDBCol>
+  </MDBRow>
+</MDBContainer>
+);
+};
 
-  <Button variant="primary" type="submit">
-    Submit
-  </Button>
-</Form>
-         </div>
-     )
-}
-
-export default Form ;
+export default FormPage;

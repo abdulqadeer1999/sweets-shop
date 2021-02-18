@@ -1,14 +1,16 @@
-import logo from './logo.svg';
+
 import './App.css';
 
 import Home from './components/home/home'
-import Form from  './components/home/form1/signup'
+import FormPage from  './components/home/form1/signup'
+import Login from './components/login/login'
 
 function App() {
   return (
     <div>
 <Home />
-<Form />
+<FormPage />
+<Login />
 
     </div>
   );
