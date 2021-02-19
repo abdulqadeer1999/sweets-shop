@@ -36,7 +36,7 @@ import 'mdbreact/dist/css/mdb.css';
 import React from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
 
-const FormPage = () => {
+const LogIn = () => {
     return (
     <MDBContainer>
       <MDBRow>
@@ -64,4 +64,4 @@ const FormPage = () => {
     );
     };
     
-    export default FormPage;
+    export default LogIn;
