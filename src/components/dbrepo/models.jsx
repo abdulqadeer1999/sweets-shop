@@ -31,42 +31,42 @@ var userSchema = new mongoose.Schema({
     name: String,
     email: String,
     password: String,
-    profilePic: String,
-    phone: String,
-    gender: String,
+    // profilePic: String,
+    // phone: String,
+    // gender: String,
     createdOn: {
         type: Date,
         'default': Date.now
     }
 });
-var userModel = mongoose.model("users", userSchema);
+// var userModel = mongoose.model("users", userSchema);
 
 
-var otpSchema = new mongoose.Schema({
-    "email": String,
-    "otpCode": String,
-    "createdOn": {
-        "type": Date,
-        "default": Date.now
-    },
-});
+// var otpSchema = new mongoose.Schema({
+//     "email": String,
+//     "otpCode": String,
+//     "createdOn": {
+//         "type": Date,
+//         "default": Date.now
+//     },
+// });
 
 
-var otpModel = mongoose.model("otps", otpSchema);
+// var otpModel = mongoose.model("otps", otpSchema);
 
-var tweetSchema = new mongoose.Schema({
-    username: String,
-    tweet: String,
-    profilePic:String,
-    createdOn: {
-        "type": Date,
-        "default": Date.now
-    },
-});
-var tweetModel = mongoose.model("tweet", tweetSchema);
+// var tweetSchema = new mongoose.Schema({
+//     username: String,
+//     tweet: String,
+//     profilePic:String,
+//     createdOn: {
+//         "type": Date,
+//         "default": Date.now
+//     },
+// });
+// var tweetModel = mongoose.model("tweet", tweetSchema);
 
-module.exports = {
-    userModel: userModel,
-    otpModel: otpModel,
-    tweetModel: tweetModel
-}
+// module.exports = {
+//     userModel: userModel,
+//     otpModel: otpModel,
+//     tweetModel: tweetModel
+// }

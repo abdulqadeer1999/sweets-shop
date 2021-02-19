@@ -29,12 +29,7 @@ function App() {
     <li>
       <Link to="/signup">Signup</Link>
     </li>
-    {/* <li>
-      <Link to="/dashboard">Dashboard</Link>
-    </li> */}
-    <li>
-      <Link to="/reddit">Reddit</Link>
-    </li>
+    
   </ol>
 </nav>
 

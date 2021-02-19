@@ -168,45 +168,45 @@ api.post("/logout", (req, res, next) => {
 
 
 
-api.post("/forget-password", (req, res, next) => {
+// api.post("/forget-password", (req, res, next) => {
 
-    if (!req.body.email) {
+//     if (!req.body.email) {
 
-        res.status(403).send(`
-            please send email in json body.
-            e.g:
-            {
-                "email": "aq@gmail.com"
-            }`)
-    }
+//         res.status(403).send(`
+//             please send email in json body.
+//             e.g:
+//             {
+//                 "email": "aq@gmail.com"
+//             }`)
+//     }
 
-    userModel.findOne({ email: req.body.email }, function (err, user) {
-        if (err) {
-            res.status(500).send({
-                message: "an error ocurred: " + JSON.stringify(err)
-            })
-        } else if (user) {
-            const otp = Math.floor(getRandomArbitrary(11111, 99999))
+//     userModel.findOne({ email: req.body.email }, function (err, user) {
+//         if (err) {
+//             res.status(500).send({
+//                 message: "an error ocurred: " + JSON.stringify(err)
+//             })
+//         } else if (user) {
+//             const otp = Math.floor(getRandomArbitrary(11111, 99999))
 
-            otpModel.create({
-                email: req.body.email,
-                otpCode: otp
-            }).then((doc) => {
+//             otpModel.create({
+//                 email: req.body.email,
+//                 otpCode: otp
+//             }).then((doc) => {
 
-                client.sendEmail({
-                    "From": "asif_student@sysborg.com",
-                    "To": req.body.email,
-                    "Subject": "Reset your password",
-                    "TextBody": `Here is your password reset code: ${otp}`
-                }).then((status) => {
+//                 client.sendEmail({
+//                     "From": "asif_student@sysborg.com",
+//                     "To": req.body.email,
+//                     "Subject": "Reset your password",
+//                     "TextBody": `Here is your password reset code: ${otp}`
+//                 }).then((status) => {
 
-                console.log("status: ", status);
-                    res.send({
-                        message: "Email Send OPT",
-                        status: 200
-                    })
+//                 console.log("status: ", status);
+//                     res.send({
+//                         message: "Email Send OPT",
+//                         status: 200
+//                     })
 
-                })
+//                 })
 
                // use when business email is unavailable
 
@@ -217,104 +217,104 @@ api.post("/forget-password", (req, res, next) => {
                 // });
 
 
-            }).catch((err) => {
-                console.log("error in creating otp: ", err);
-                res.status(500).send("unexpected error ")
-            })
+//             }).catch((err) => {
+//                 console.log("error in creating otp: ", err);
+//                 res.status(500).send("unexpected error ")
+//             })
 
 
-        } else {
-            res.status(403).send({
-                message: "user not found"
-            });
-        }
-    });
-})
+//         } else {
+//             res.status(403).send({
+//                 message: "user not found"
+//             });
+//         }
+//     });
+// })
 
-api.post("/forget-password-step-2", (req, res, next) => {
+// api.post("/forget-password-step-2", (req, res, next) => {
 
-    if (!req.body.email && !req.body.otp && !req.body.newPassword) {
+//     if (!req.body.email && !req.body.otp && !req.body.newPassword) {
 
-        res.status(403).send(`
-            please send email & otp in json body.
-            e.g:
-            {
-                "email": "aq@gmail.com",
-                "newPassword": "1234",
-                "otp": "12345" 
-            }`)
-        return;
-    }
+//         res.status(403).send(`
+//             please send email & otp in json body.
+//             e.g:
+//             {
+//                 "email": "aq@gmail.com",
+//                 "newPassword": "1234",
+//                 "otp": "12345" 
+//             }`)
+//         return;
+//     }
 
-    userModel.findOne({
-        email: req.body.email
-    },
-        function (err, user) {
-            if (err) {
-                res.status(500).send({
-                    message: "an error occurred: " + JSON.stringify(err)
-                });
-            } else if (user) {
+//     userModel.findOne({
+//         email: req.body.email
+//     },
+//         function (err, user) {
+//             if (err) {
+//                 res.status(500).send({
+//                     message: "an error occurred: " + JSON.stringify(err)
+//                 });
+//             } else if (user) {
 
-                otpModel.find({
-                    email: req.body.email
-                },
-                    function (err, otpData) {
-
-
-
-                        if (err) {
-                            res.status(500).send({
-                                message: "an error occurred: " + JSON.stringify(err)
-                            });
-                        } else if (otpData) {
-                            otpData = otpData[otpData.length - 1]
-
-                            console.log("otpData: ", otpData);
-
-                            const now = new Date().getTime();
-                            const otpIat = new Date(otpData.createdOn).getTime();
-                            const diff = now - otpIat; 
-
-                            console.log("diff: ", diff);
-
-                            if (otpData.otpCode === req.body.otp && diff < 300000) { 
-                                otpData.remove()
-
-                                bcrypt.stringToHash(req.body.newPassword).then(function (hash) {
-                                    user.update({
-                                        password: hash
-                                    }, {}, function (err, data) {
-                                        res.send({
-                                            message: "Your password has been changed"
-                                        });
-                                    })
-                                })
-
-                            } else {
-                                res.status(401).send({
-                                    message: "incorrect otp"
-                                });
-                            }
-                        } else {
-                            res.status(401).send({
-                                message: "incorrect otp"
-                            });
-                        }
-                    })
-
-            } else {
-                res.status(403).send({
-                    message: "user not found"
-                });
-            }
-        });
-})
+//                 otpModel.find({
+//                     email: req.body.email
+//                 },
+//                     function (err, otpData) {
 
 
 
+//                         if (err) {
+//                             res.status(500).send({
+//                                 message: "an error occurred: " + JSON.stringify(err)
+//                             });
+//                         } else if (otpData) {
+//                             otpData = otpData[otpData.length - 1]
 
-function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-}
-module.exports = api;
+//                             console.log("otpData: ", otpData);
+
+//                             const now = new Date().getTime();
+//                             const otpIat = new Date(otpData.createdOn).getTime();
+//                             const diff = now - otpIat; 
+
+//                             console.log("diff: ", diff);
+
+//                             if (otpData.otpCode === req.body.otp && diff < 300000) { 
+//                                 otpData.remove()
+
+//                                 bcrypt.stringToHash(req.body.newPassword).then(function (hash) {
+//                                     user.update({
+//                                         password: hash
+//                                     }, {}, function (err, data) {
+//                                         res.send({
+//                                             message: "Your password has been changed"
+//                                         });
+//                                     })
+//                                 })
+
+//                             } else {
+//                                 res.status(401).send({
+//                                     message: "incorrect otp"
+//                                 });
+//                             }
+//                         } else {
+//                             res.status(401).send({
+//                                 message: "incorrect otp"
+//                             });
+//                         }
+//                     })
+
+//             } else {
+//                 res.status(403).send({
+//                     message: "user not found"
+//                 });
+//             }
+//         });
+// })
+
+
+
+
+// function getRandomArbitrary(min, max) {
+//     return Math.random() * (max - min) + min;
+// }
+// module.exports = api;

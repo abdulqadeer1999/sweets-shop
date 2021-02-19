@@ -17,8 +17,8 @@ import {
 
 
 // import Home from './form1/signup'
-import FormPage from '../home/form1/signup'
-import LogIn from '../login/login'
+// import FormPage from '../home/form1/signup'
+// import LogIn from '../login/login'
 
 function Home () {
     
