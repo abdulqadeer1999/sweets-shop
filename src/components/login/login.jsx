@@ -4,28 +4,11 @@ import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 import React from "react";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBInput } from 'mdbreact';
-import axios from 'axios'
-import url from 'url'
-import response from 'response'
+
 
 const LogIn = () => {
 
-  axios({
-    method: 'post',
-    url: url + "/login",
-    data: {
-        email: document.getElementById("email2").value,
-        password: document.getElementById("pass2").value,
-    }, withCredentials: true
-    
-}).then((response) => {
-    console.log(response);
-    alert(response.data.message)
-    window.location.href = "home.html"
-}, (error) => {
-    console.log(error);
-    alert(error)
-});
+  
 
 
     return (
